@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="css/styled.css">
+  <title>Women's Day</title>
+  <script src="https://cdn.jsdelivr.net/npm/vara@1.4.0/lib/vara.min.js" type="text/javascript"></script>
+</head>
+
+<body>
+  <div class="v-center"></div>
+  <div id="container">
+    <div class="book">
+      <div class="first paper">
+        <div class="page front contents">
+          <div class="intro">
+            <div class="intro-head">
+              <h2>Vietnamese</h2>
+              <h2>Women's Day</h2>
+            </div>
+            <h1>2022</h1>
+            <img src="/image/logo.png" alt="logo" width="200px" />
+          </div>
+        </div>
+        <div class="page back"></div>
+      </div>
+      <div class="second paper">
+        <div class="page front contents">
+          <div id="vara-container"></div>
+        </div>
+        <div class="page back"></div>
+      </div>
+      <div class="third paper">
+        <div class="page front contents">
+          <div id="vara-container2"></div>
+        </div>
+        <div class="page back"></div>
+      </div>
+      <div class="fourth paper">
+        <div class="page last front contents">
+          <div id="vara-container3"></div>
+        </div>
+        <div class="page back"></div>
+      </div>
+      <div class="side"></div>
+      <div class="bottom"></div>
+      <div class="shadow"></div>
+    </div>
+  </div>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+  <script>
+    let winWidth = window.screen.width;
+    let ratio = winWidth / 1920;
+    let fontSize = {
+      small: 12,
+      medium: 14
+    };
+    let played = [0, 0, 0];
+    let vara = [];
+    let bodyFontSize = Math.max(16 * ratio, 10);
+    let posX = Math.max(80 * ratio, 30);
+    console.log(posX)
+    let body = document.getElementsByTagName('body')[0]
+    body.style.fontStyle = `${bodyFontSize}` + "px"
+    fontSize.small = Math.max(fontSize.small * ratio, 7);
+    fontSize.medium = Math.max(fontSize.medium * ratio, 10);
+    vara[0] = new Vara(
+      "#vara-container",
+      "/font/SatisfySL.json",
+      [
+        {
+          text: "20 Oct 2022",
+          textAlign: "right",
+          y: 20,
+          x: -30,
+          delay: 500,
+          duration: 1500,
+          fontSize: fontSize.small
+        },
+        {
+          text: "Wishing my sisters a happy October 20th",
+          y: 40,
+          x: posX,
+          duration: 4000
+        },
+        {
+          text: "beautiful, successful to have many boys pursue like beneficial teeth, sky with clouds",
+          id: "sphinx",
+          x: posX,
+          delay: 1000,
+          duration: 4500
+        },
+        {
+          text: "From Lam Le with love",
+          id: "end",
+          color: "#3f51b5",
+          delay: 1000,
+          x: posX,
+          duration: 4500
+        }
+      ],
+      {
+        strokeWidth: 2,
+        fontSize: fontSize.medium,
+        autoAnimation: false
+      }
+    );
+    vara[1] = new Vara(
+      "#vara-container2",
+      "/font/SatisfySL.json",
+      [
+        {
+          text: "20 Oct 2022",
+          textAlign: "right",
+          delay: 500,
+          y: 20,
+          x: -30,
+          duration: 1500,
+          fontSize: fontSize.small
+        },
+        {
+          text: "First of all, I wish all my sisters a happy October 20th",
+          y: 40,
+          x: posX,
+          duration: 4000
+        },
+        {
+          text: "I wish my old sister good health and successful",
+          y: 40,
+          x: posX,
+          duration: 3500
+        }
+      ],
+      {
+        strokeWidth: 2,
+        fontSize: fontSize.medium,
+        autoAnimation: false
+      }
+    );
+    vara[2] = new Vara(
+      "#vara-container3",
+      "/font/SatisfySL.json",
+      [
+        {
+          text: "Wish you will always be charming in the eyes of the other half of the world",
+          y: 40,
+          x: posX,
+          duration: 4000
+        },
+        {
+          text: "From Viet Nguyen with love",
+          y: 20,
+          x: posX,
+          color: "#3f51b5",
+          duration: 3500
+        },
+      ],
+      {
+        strokeWidth: 2,
+        fontSize: fontSize.medium,
+        autoAnimation: false
+      }
+    );
+    vara[2].ready(function () {
+      $(".front:not(.last)").click(function () {
+        var ix = $(this)
+          .parent(".paper")
+          .index();
+        $(".book").addClass("open");
+        $(this)
+          .parent(".paper")
+          .addClass("open");
+        if (!played[ix]) {
+          vara[ix].playAll();
+          vara[ix].animationEnd(function (i, o) {
+            played[ix] = 1;
+            if (i == "link") {
+              var group = o.container;
+              var rect = vara[2].createNode("rect", {
+                x: 0,
+                y: 0,
+                width: o.container.getBoundingClientRect().width,
+                height: o.container.getBoundingClientRect().height,
+                fill: "transparent"
+              });
+              group.appendChild(rect);
+              $(rect).css("cursor", "pointer");
+              $(rect).click(function () {
+                console.log(true);
+                document.querySelector("#link").click();
+              });
+            }
+          });
+        }
+      });
+      $(".back").click(function () {
+        if (
+          $(this)
+            .parent(".paper")
+            .index() == 0
+        )
+          $(".book").removeClass("open");
+        $(this)
+          .parent(".paper")
+          .removeClass("open");
+      });
+    });
+
+  </script>
+</body>
+
+</html>
