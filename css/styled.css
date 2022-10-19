@@ -180,6 +180,12 @@ body {
 .book .open.third .back {
   transform: translateZ(-2px);
 }
+.book .open.fourth .back {
+  transform: translateZ(-3px);
+}
+.book .open.fifty .back {
+  transform: translateZ(-4px);
+}
 .book .paper.first {
   z-index: 10;
 }
