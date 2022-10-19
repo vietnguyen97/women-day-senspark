@@ -40,8 +40,20 @@
         <div class="page back"></div>
       </div>
       <div class="fourth paper">
-        <div class="page last front contents">
+        <div class="page front contents">
           <div id="vara-container3"></div>
+        </div>
+        <div class="page back"></div>
+      </div>
+      <div class="fifty paper">
+        <div class="page front contents">
+          <div id="vara-container4"></div>
+        </div>
+        <div class="page back"></div>
+      </div>
+      <div class="sixty paper">
+        <div class="page last front contents">
+          <div id="vara-container5"></div>
         </div>
         <div class="page back"></div>
       </div>
@@ -58,11 +70,10 @@
       small: 12,
       medium: 14
     };
-    let played = [0, 0, 0];
+    let played = [0, 0, 0, 0, 0];
     let vara = [];
     let bodyFontSize = Math.max(16 * ratio, 10);
     let posX = Math.max(80 * ratio, 30);
-    console.log(posX)
     let body = document.getElementsByTagName('body')[0]
     body.style.fontStyle = `${bodyFontSize}` + "px"
     fontSize.small = Math.max(fontSize.small * ratio, 7);
@@ -164,7 +175,89 @@
         autoAnimation: false
       }
     );
-    vara[2].ready(function () {
+    vara[3] = new Vara(
+      "#vara-container4",
+      "/font/SatisfySL.json",
+      [
+        {
+          text: "20 Oct 2022",
+          textAlign: "right",
+          y: 20,
+          x: -30,
+          delay: 500,
+          duration: 1500,
+          fontSize: fontSize.small
+        },
+        {
+          text: "Cheers to all ladies of SENSPARK.",
+          y: 40,
+          x: posX,
+          duration: 4000
+        },
+        {
+          text: "Wishing you a day fulfilled with love, smile and joy. Happy 20/10.",
+          id: "sphinx",
+          x: posX,
+          delay: 1000,
+          duration: 4500
+        },
+        {
+          text: "From a cool guy with love",
+          id: "end",
+          color: "#3f51b5",
+          delay: 1000,
+          x: posX,
+          duration: 4500
+        }
+      ],
+      {
+        strokeWidth: 2,
+        fontSize: fontSize.medium,
+        autoAnimation: false
+      }
+    );
+    vara[4] = new Vara(
+      "#vara-container5",
+      "/font/SatisfySL.json",
+      [
+        {
+          text: "20 Oct 2022",
+          textAlign: "right",
+          y: 20,
+          x: -30,
+          delay: 500,
+          duration: 1500,
+          fontSize: fontSize.small
+        },
+        {
+          text: "Wishing a very happy and meaningful Woman's Day to all pretties.",
+          y: 40,
+          x: posX,
+          duration: 4000
+        },
+        {
+          text: "Shine on, not only today but every day.",
+          id: "sphinx",
+          x: posX,
+          delay: 1000,
+          duration: 4500
+        },
+        {
+          text: "From Unamed guys with love",
+          id: "end",
+          color: "#3f51b5",
+          delay: 1000,
+          x: posX,
+          duration: 4500
+        }
+      ],
+      {
+        strokeWidth: 2,
+        fontSize: fontSize.medium,
+        autoAnimation: false
+      }
+    );
+    vara[4].ready(function () {
       $(".front:not(.last)").click(function () {
         var ix = $(this)
           .parent(".paper")
@@ -177,22 +270,6 @@
           vara[ix].playAll();
           vara[ix].animationEnd(function (i, o) {
             played[ix] = 1;
-            if (i == "link") {
-              var group = o.container;
-              var rect = vara[2].createNode("rect", {
-                x: 0,
-                y: 0,
-                width: o.container.getBoundingClientRect().width,
-                height: o.container.getBoundingClientRect().height,
-                fill: "transparent"
-              });
-              group.appendChild(rect);
-              $(rect).css("cursor", "pointer");
-              $(rect).click(function () {
-                console.log(true);
-                document.querySelector("#link").click();
-              });
-            }
           });
         }
       });

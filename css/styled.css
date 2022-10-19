@@ -181,27 +181,39 @@ body {
   transform: translateZ(-2px);
 }
 .book .paper.first {
-  z-index: 8;
+  z-index: 10;
 }
 .book .paper.second {
-  z-index: 7;
+  z-index: 9;
 }
 .book .paper.third {
-  z-index: 6;
+  z-index: 8;
 }
 .book .paper.fourth {
+  z-index: 7;
+}
+.book .paper.fifty {
+  z-index: 6;
+}
+.book .paper.sixty {
   z-index: 5;
 }
 .book .paper.first .front {
-  transform: translateZ(0.4px);
+  transform: translateZ(0.6px);
 }
 .book .paper.second .front {
-  transform: translateZ(0.3px);
+  transform: translateZ(0.5px);
 }
 .book .paper.third .front {
-  transform: translateZ(0.2px);
+  transform: translateZ(0.4px);
 }
 .book .paper.fourth .front {
+  transform: translateZ(0.3px);
+}
+.book .paper.fifty .front {
+  transform: translateZ(0.2px);
+}
+.book .paper.sixty .front {
   transform: translateZ(0.1px);
 }
 .book .second-page #vara-container {
